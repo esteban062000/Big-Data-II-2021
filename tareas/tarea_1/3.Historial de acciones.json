@@ -1,0 +1,586 @@
+[
+   {
+     "op": "core/row-removal",
+     "engineConfig": {
+       "facets": [
+         {
+           "type": "text",
+           "name": "adresse_voie",
+           "columnName": "adresse_voie",
+           "query": "[ ]+",
+           "mode": "regex",
+           "caseSensitive": false,
+           "invert": true
+         }
+       ],
+       "mode": "row-based"
+     },
+     "description": "Remove rows"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [
+         {
+           "type": "text",
+           "name": "nb_stagiaires_1",
+           "columnName": "nb_stagiaires_1",
+           "query": "0",
+           "mode": "regex",
+           "caseSensitive": false,
+           "invert": false
+         }
+       ],
+       "mode": "row-based"
+     },
+     "baseColumnName": "nb_stagiaires_1",
+     "expression": "grel:value == \"0\"",
+     "onError": "set-to-blank",
+     "newColumnName": "nb_stagiaries_1_isNull",
+     "columnInsertIndex": 17,
+     "description": "Create column nb_stagiaries_1_isNull at index 17 based on column nb_stagiaires_1 using expression grel:value == \"0\""
+   },
+   {
+     "op": "core/row-removal",
+     "engineConfig": {
+       "facets": [
+         {
+           "type": "text",
+           "name": "nb_stagiaires_1",
+           "columnName": "nb_stagiaires_1",
+           "query": "0",
+           "mode": "regex",
+           "caseSensitive": false,
+           "invert": false
+         },
+         {
+           "type": "list",
+           "name": "nb_stagiaries_1_isNull",
+           "expression": "value",
+           "columnName": "nb_stagiaries_1_isNull",
+           "invert": false,
+           "omitBlank": false,
+           "omitError": false,
+           "selection": [
+             {
+               "v": {
+                 "v": true,
+                 "l": "true"
+               }
+             }
+           ],
+           "selectBlank": false,
+           "selectError": false
+         }
+       ],
+       "mode": "row-based"
+     },
+     "description": "Remove rows"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "num_etablissement",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column num_etablissement using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "baseColumnName": "code_specialite_1",
+     "expression": "grel:value == \"326\"",
+     "onError": "set-to-blank",
+     "newColumnName": "specialite_1_isInformatique",
+     "columnInsertIndex": 16,
+     "description": "Create column specialite_1_isInformatique at index 16 based on column code_specialite_1 using expression grel:value == \"326\""
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "adresse_etranger_voie",
+     "description": "Remove column adresse_etranger_voie"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "adresse_etranger_complement",
+     "description": "Remove column adresse_etranger_complement"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "adresse_etranger_code_postal",
+     "description": "Remove column adresse_etranger_code_postal"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "adresse_etranger_ville",
+     "description": "Remove column adresse_etranger_ville"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "adresse_etranger_pays",
+     "description": "Remove column adresse_etranger_pays"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaries_1_isNull",
+     "description": "Remove column nb_stagiaries_1_isNull"
+   },
+   {
+     "op": "core/mass-edit",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "adresse_ville",
+     "expression": "value",
+     "edits": [
+       {
+         "from": [
+           "RUEIL MALMAISON",
+           "RUEIL  MALMAISON"
+         ],
+         "fromBlank": false,
+         "fromError": false,
+         "to": "RUEIL MALMAISON"
+       },
+       {
+         "from": [
+           "SAINT ETIENNE",
+           "SAINT- ETIENNE"
+         ],
+         "fromBlank": false,
+         "fromError": false,
+         "to": "SAINT ETIENNE"
+       }
+     ],
+     "description": "Mass edit cells in column adresse_ville"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "adresse_ville",
+     "expression": "grel:if(value.startsWith(\"PARIS\"), \"PARIS\", value)",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column adresse_ville using expression grel:if(value.startsWith(\"PARIS\"), \"PARIS\", value)"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_2",
+     "expression": "grel:if(value == \"\", \"0\", value)",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_2 using expression grel:if(value == \"\", \"0\", value)"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_3",
+     "expression": "grel:if(value == \"\", \"0\", value)",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_3 using expression grel:if(value == \"\", \"0\", value)"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_4",
+     "expression": "grel:if(value == \"\", \"0\", value)",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_4 using expression grel:if(value == \"\", \"0\", value)"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_15",
+     "description": "Remove column nb_heures_stagiaires_15"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_13",
+     "description": "Remove column code_specialite_13"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_12",
+     "description": "Remove column nb_heures_stagiaires_12"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_12",
+     "description": "Remove column nb_stagiaires_12"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_12",
+     "description": "Remove column code_specialite_12"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_11",
+     "description": "Remove column nb_heures_stagiaires_11"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_11",
+     "description": "Remove column nb_stagiaires_11"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_11",
+     "description": "Remove column code_specialite_11"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_10",
+     "description": "Remove column nb_heures_stagiaires_10"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_10",
+     "description": "Remove column nb_stagiaires_10"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_10",
+     "description": "Remove column code_specialite_10"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_9",
+     "description": "Remove column nb_heures_stagiaires_9"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_9",
+     "description": "Remove column nb_stagiaires_9"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_9",
+     "description": "Remove column code_specialite_9"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_8",
+     "description": "Remove column nb_heures_stagiaires_8"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_8",
+     "description": "Remove column nb_stagiaires_8"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_8",
+     "description": "Remove column code_specialite_8"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_7",
+     "description": "Remove column nb_heures_stagiaires_7"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_7",
+     "description": "Remove column nb_stagiaires_7"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_7",
+     "description": "Remove column code_specialite_7"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_6",
+     "description": "Remove column nb_heures_stagiaires_6"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_6",
+     "description": "Remove column nb_stagiaires_6"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_6",
+     "description": "Remove column code_specialite_6"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_5",
+     "description": "Remove column nb_heures_stagiaires_5"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_5",
+     "description": "Remove column nb_stagiaires_5"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_5",
+     "description": "Remove column code_specialite_5"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_15",
+     "description": "Remove column nb_stagiaires_15"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_15",
+     "description": "Remove column code_specialite_15"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_14",
+     "description": "Remove column nb_heures_stagiaires_14"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_14",
+     "description": "Remove column nb_stagiaires_14"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "code_specialite_14",
+     "description": "Remove column code_specialite_14"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_heures_stagiaires_13",
+     "description": "Remove column nb_heures_stagiaires_13"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "nb_stagiaires_13",
+     "description": "Remove column nb_stagiaires_13"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_heures_stagiaires_1",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_heures_stagiaires_1 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_heures_stagiaires_2",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_heures_stagiaires_2 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_heures_stagiaires_3",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_heures_stagiaires_3 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_heures_stagiaires_4",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_heures_stagiaires_4 using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Column",
+     "description": "Remove column Column"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "baseColumnName": "nb_heures_stagiaires_1",
+     "expression": "grel:cells[\"nb_heures_stagiaires_1\"].value + cells[\"nb_heures_stagiaires_2\"].value + cells[\"nb_heures_stagiaires_3\"].value + cells[\"nb_heures_stagiaires_4\"].value",
+     "onError": "set-to-blank",
+     "newColumnName": "sum_heures_stagiaires",
+     "columnInsertIndex": 14,
+     "description": "Create column sum_heures_stagiaires at index 14 based on column nb_heures_stagiaires_1 using expression grel:cells[\"nb_heures_stagiaires_1\"].value + cells[\"nb_heures_stagiaires_2\"].value + cells[\"nb_heures_stagiaires_3\"].value + cells[\"nb_heures_stagiaires_4\"].value"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "sum_heures_stagiaires",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column sum_heures_stagiaires using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_2",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_2 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_3",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_3 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_4",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_4 using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "nb_stagiaires_1",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column nb_stagiaires_1 using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "baseColumnName": "nb_stagiaires_1",
+     "expression": "grel:cells[\"nb_stagiaires_1\"].value + cells[\"nb_stagiaires_2\"].value + cells[\"nb_stagiaires_3\"].value + cells[\"nb_stagiaires_4\"].value",
+     "onError": "set-to-blank",
+     "newColumnName": "sum_stagiaires",
+     "columnInsertIndex": 13,
+     "description": "Create column sum_stagiaires at index 13 based on column nb_stagiaires_1 using expression grel:cells[\"nb_stagiaires_1\"].value + cells[\"nb_stagiaires_2\"].value + cells[\"nb_stagiaires_3\"].value + cells[\"nb_stagiaires_4\"].value"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_stagiaires",
+     "index": 12,
+     "description": "Move column sum_stagiaires to position 12"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_stagiaires",
+     "index": 11,
+     "description": "Move column sum_stagiaires to position 11"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_stagiaires",
+     "index": 10,
+     "description": "Move column sum_stagiaires to position 10"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_heures_stagiaires",
+     "index": 14,
+     "description": "Move column sum_heures_stagiaires to position 14"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_heures_stagiaires",
+     "index": 13,
+     "description": "Move column sum_heures_stagiaires to position 13"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_heures_stagiaires",
+     "index": 12,
+     "description": "Move column sum_heures_stagiaires to position 12"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "sum_heures_stagiaires",
+     "index": 11,
+     "description": "Move column sum_heures_stagiaires to position 11"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "effectifs",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column effectifs using expression value.toNumber()"
+   }
+ ]
