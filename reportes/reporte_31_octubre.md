@@ -1,0 +1,26 @@
+## Resumen de los temas estudiados
+
+En las últimas semanas, se dedicó una clase a cómo utilizar algoritmos genéticos en la búsqueda de hiperparámetros. Se explicó qué son los algoritmos genéticos, en qué situaciones son útiles y cuáles son sus partes fundamentales. Se tienen los individuos, que son soluciones candidatas al problema planteado; un conjunto de individuos conforma una población. Sobre estos individuos se definen operaciones de reproducción y mutación para explorar nuevas soluciones. Al utilizar algoritmos genéticos, se pueden considerar y probar soluciones que serían particularmente difíciles de generar, lo que puede funcionar como una herramienta muy útil al encontrar parámetros complejos de calcular (manual o determinísticamente) para modelos de aprendizaje automático.
+
+Seguidamente, se cubrió el tema de análisis de asociaciones, un tipo de problema distinto a los de predicción tratados hasta ahora. Estos análisis buscan encontrar características que aparecen conjuntamente en algún conjunto de datos, para lo cual utilizan métodos que permitan descubrir las asociaciones entre estos atributos. Este análisis es sumamente útil cuando se tienen datos de tipo transacción, por ejemplo, cuando se tiene información de cuáles productos compra un cliente. De esta forma, se puede llegar a conclusiones del tipo *si compró el producto A, probablemente compre el producto B*, lo que le otorga a este tipo de análisis un nombre muy común en la literatura: *market basket analysis*. En este tipo de problemas, se busca generar reglas que satisfagan métricas de *support*, *lift* y *confidence*, considerando las dificultades que puede tener un espacio de búsqueda muy grande. 
+
+Finalmente, se presentó el trabajo de las herramientas investigadas por los grupos formados en clase. En este caso, se presentó: *Datawrapper, Spark, TensorFlow, Pytorch, Neo4j* y 
+*OpenCV*. Nuestro grupo investigó sobre *Hadoop*, por lo que se expuso frente a los demás y se aclararon las dudas que hicieron. Esta actividad permitió un intercambio de conocimientos entre los estudiantes y, además, obtener información útil sobre muchas herramientas muy rápidamente, lo que constituye un componente muy atractivo del curso.
+
+## Comentarios sobre algo aprendido
+
+El tema de algoritmos genéticos ya había sido cubierto con profundidad en cursos anteriores, por lo que sirvió de repaso y un ejemplo de cómo utilizarlo para encontrar hiperparámetros. Por otro lado, el tema de análisis de asociaciones fue completamente nuevo, al proponer un ejercicio de aprendizaje automático distinto a los de predicción que habían sido tratados anteriormente en la carrera. Me gustó bastante la aplicabilidad del tema, pues ofrece ideas muy prácticas sobre cuáles productos son más probables de ser comprados o tendencias que se puedan utilizar en los mercados financieros. Creo que, en futuras versiones del curso, sería provechoso para los estudiantes ahondar más en este tema.
+
+Las exposiciones de los compañeros fueron de utilidad para tener un vistazo de qué son y para qué se utilizan distintas herramientas relacionadas al análisis de datos. Esta actividad me pareció muy beneficiosa y, a mi parecer, debería replicarse en otros cursos de la carrera. En particular, me permitió profundizar sobre lo que ya sabía de Hadoop (herramienta que elegimos para investigar) y, a la vez, conocer sobre herramientas que pueden ser útiles en el ejercicio profesional. Por ejemplo, yo no llevé bases de datos avanzadas, pero la explicación sobre Neo4j me sirvió como primer paso para saber *qué buscar* cuando deba trabajar con bases de datos no relacionales.
+
+## Dudas sobre la materia estudiada
+Hasta el momento, no tengo dudas sobre la materia cubierta. 
+
+## Posible uso que usted le dará a esta materia como profesional
+
+Con respecto a la materia del curso, me causó mucho interés el análisis de asociaciones. Por ejemplo, podría buscar un conjunto de datos sobre el comportamiento de algunas criptomonedas de interés en los últimos años, para intentar encontrar relaciones que puedan indicar cuándo comprar o vender. Puesto que personalmente me gustan los temas financieros, veo plausible realizar un análisis de este tipo a nivel profesional en el futuro, ya sea para descubrir algún patrón en un mercado específico o para una tarea más simple de *market basket* donde se encuentren relaciones de productos que, a menudo, se compren conjuntamente.
+
+Con respecto a las herramientas presentadas, me llamó la atención Pytorch. Hasta ahora, mi única herramienta para trabajar con redes neuronales era TensorFlow, por lo que ahora dispongo de otra opción para aplicar según sea el caso. Los compañeros que expusieron sobre ambas tecnologías explicaron en qué situaciones era mejor una u otra, lo que se traduce una aplicabilidad práctica bastante alta para personas que, como yo, ya han utilizado TensorFlow antes pero no sabían cuándo puede ser beneficioso emplear Pytorch. En el próximo trabajo que deba utilizar alguna de estas librerías, podré decidir cuál es mejor según las condiciones específicas del problema.
+
+## Mencione cualquier material que utilizó como referencia para el aprendizaje.
+En estas dos semanas, no he utilizado material extra en el aprendizaje.
