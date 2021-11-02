@@ -1,0 +1,204 @@
+[
+   {
+     "op": "core/column-removal",
+     "columnName": "id",
+     "description": "Remove column id"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "created_at",
+     "description": "Remove column created_at"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "last_move_at",
+     "description": "Remove column last_move_at"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "white_id",
+     "description": "Remove column white_id"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "black_id",
+     "description": "Remove column black_id"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "moves",
+     "description": "Remove column moves"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "opening_name",
+     "description": "Remove column opening_name"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "opening_ply",
+     "description": "Remove column opening_ply"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "victory_status",
+     "description": "Remove column victory_status"
+   },
+   {
+     "op": "core/row-removal",
+     "engineConfig": {
+       "facets": [
+         {
+           "type": "text",
+           "name": "winner",
+           "columnName": "winner",
+           "query": "draw",
+           "mode": "text",
+           "caseSensitive": true,
+           "invert": false
+         }
+       ],
+       "mode": "row-based"
+     },
+     "description": "Remove rows"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "baseColumnName": "rated",
+     "expression": "grel:if(value == \"FALSE\", 0,1)",
+     "onError": "set-to-blank",
+     "newColumnName": "isRated",
+     "columnInsertIndex": 1,
+     "description": "Create column isRated at index 1 based on column rated using expression grel:if(value == \"FALSE\", 0,1)"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "rated",
+     "description": "Remove column rated"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "increment_code",
+     "expression": "grel:value.replace(/\\+.*/,'')",
+     "onError": "set-to-blank",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column increment_code using expression grel:value.replace(/\\+.*/,'')"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "increment_code",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column increment_code using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-rename",
+     "oldColumnName": "increment_code",
+     "newColumnName": "timeControl",
+     "description": "Rename column increment_code to timeControl"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "opening_eco",
+     "expression": "grel:if(value.startsWith(\"A\"),1, if(value.startsWith(\"B\"),2, if(value.startsWith(\"C\"),3,if(value.startsWith(\"D\"),4,5))))",
+     "onError": "set-to-blank",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column opening_eco using expression grel:if(value.startsWith(\"A\"),1, if(value.startsWith(\"B\"),2, if(value.startsWith(\"C\"),3,if(value.startsWith(\"D\"),4,5))))"
+   },
+   {
+     "op": "core/column-rename",
+     "oldColumnName": "opening_eco",
+     "newColumnName": "openingECO",
+     "description": "Rename column opening_eco to openingECO"
+   },
+   {
+     "op": "core/column-rename",
+     "oldColumnName": "black_rating",
+     "newColumnName": "blackRating",
+     "description": "Rename column black_rating to blackRating"
+   },
+   {
+     "op": "core/column-rename",
+     "oldColumnName": "white_rating",
+     "newColumnName": "whiteRating",
+     "description": "Rename column white_rating to whiteRating"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "winner",
+     "expression": "grel:if(value == \"white\",1,0)",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column winner using expression grel:if(value == \"white\",1,0)"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "whiteRating",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column whiteRating using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "blackRating",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column blackRating using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "turns",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column turns using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-move",
+     "columnName": "winner",
+     "index": 6,
+     "description": "Move column winner to position 6"
+   }
+ ]
