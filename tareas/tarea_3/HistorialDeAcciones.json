@@ -1,0 +1,131 @@
+[
+   {
+     "op": "core/column-removal",
+     "columnName": "Brand",
+     "description": "Remove column Brand"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Store Number",
+     "description": "Remove column Store Number"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Store Name",
+     "description": "Remove column Store Name"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Ownership Type",
+     "description": "Remove column Ownership Type"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Street Address",
+     "description": "Remove column Street Address"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Postcode",
+     "description": "Remove column Postcode"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Phone Number",
+     "description": "Remove column Phone Number"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "City",
+     "description": "Remove column City"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "State/Province",
+     "description": "Remove column State/Province"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "Longitude",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column Longitude using expression value.toNumber()"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "Latitude",
+     "expression": "value.toNumber()",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column Latitude using expression value.toNumber()"
+   },
+   {
+     "op": "core/column-addition",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "baseColumnName": "Country",
+     "expression": "grel:if(value == \"US\", 1,0)",
+     "onError": "set-to-blank",
+     "newColumnName": "isUnitedStates",
+     "columnInsertIndex": 1,
+     "description": "Create column isUnitedStates at index 1 based on column Country using expression grel:if(value == \"US\", 1,0)"
+   },
+   {
+     "op": "core/column-removal",
+     "columnName": "Country",
+     "description": "Remove column Country"
+   },
+   {
+     "op": "core/text-transform",
+     "engineConfig": {
+       "facets": [],
+       "mode": "row-based"
+     },
+     "columnName": "Timezone",
+     "expression": "grel:if(contains(value, \"Africa\"),1,if(contains(value, \"America\"),2,if(contains(value, \"Asia\"),3,if(contains(value, \"Europe\"),4,5))))",
+     "onError": "keep-original",
+     "repeat": false,
+     "repeatCount": 10,
+     "description": "Text transform on cells in column Timezone using expression grel:if(contains(value, \"Africa\"),1,if(contains(value, \"America\"),2,if(contains(value, \"Asia\"),3,if(contains(value, \"Europe\"),4,5))))"
+   },
+   {
+     "op": "core/column-rename",
+     "oldColumnName": "Timezone",
+     "newColumnName": "Continent",
+     "description": "Rename column Timezone to Continent"
+   },
+   {
+     "op": "core/row-removal",
+     "engineConfig": {
+       "facets": [
+         {
+           "type": "range",
+           "name": "Longitude",
+           "expression": "value",
+           "columnName": "Longitude",
+           "from": -160,
+           "to": 180,
+           "selectNumeric": false,
+           "selectNonNumeric": true,
+           "selectBlank": true,
+           "selectError": true
+         }
+       ],
+       "mode": "row-based"
+     },
+     "description": "Remove rows"
+   }
+ ]
